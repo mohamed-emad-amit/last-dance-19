@@ -2,29 +2,52 @@ import { useEffect, useState } from "react";
 import { ProductListPreview } from "../../components/ProductListPreview/ProductListPreview";
 import { errorHandler } from "../../utils/errorHandler";
 import { API } from "../../api/apiService";
+import { Paginator } from "../../components/Paginator/Paginator";
 
 // Fetch Products
 export const Products = () => {
   // Local Products
   const [products, setProducts] = useState([]);
 
-  useEffect(function () {
-    async function fetchAllProducts() {
-      try {
-        // Hit Endpoint
-        const response = await API.get("/products");
-        // Extract Data
-        const { products } = response.data;
+  // Pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const [noPages, setNoPages] = useState(0);
+  const [skip, setSkip] = useState(0);
+  const limit = 20;
 
-        // Update
-        setProducts(products);
-      } catch (error) {
-        errorHandler(error);
+  // Handle Current Page
+  function handleCurrentPage(page) {
+    // Update Current Page OnPress
+    setCurrentPage(page);
+    // Update Skip: New Products
+    setSkip((page - 1) * limit);
+  }
+
+  useEffect(
+    function () {
+      async function fetchAllProducts() {
+        try {
+          // Hit Endpoint
+          const response = await API.get(
+            `/products?skip=${skip}&limit=${limit}`
+          );
+          // Extract Data: limit [no-products], skip [no-products-igonre]
+          const { products, total } = response.data;
+
+          // Update
+          setProducts(products);
+
+          // Calc Pages
+          setNoPages(Math.ceil(total / limit));
+        } catch (error) {
+          errorHandler(error);
+        }
       }
-    }
 
-    fetchAllProducts();
-  }, []);
+      fetchAllProducts();
+    },
+    [skip]
+  );
 
   return (
     <div>
@@ -32,6 +55,11 @@ export const Products = () => {
       <ProductListPreview products={products} />
 
       {/* [TODO]: Pagiation */}
+      <Paginator
+        noPages={noPages}
+        onPress={handleCurrentPage}
+        currentPage={currentPage}
+      />
     </div>
   );
 };
