@@ -6,6 +6,8 @@ import { GlobalNavbar } from "./components/GlobalNavbar/GlobalNavbar";
 import { Footer } from "./components/Footer/Footer";
 import { Toaster } from "react-hot-toast";
 import { NotFound } from "./pages/NotFound/NotFound";
+import { Products } from "./pages/Products/Products";
+import { ProductDetails } from "./pages/ProductDetails/ProductDetails";
 
 export default function App() {
   return (
@@ -22,7 +24,9 @@ export default function App() {
           <Route path="/" Component={Home} />
           <Route path="/login" Component={Login} />
 
-          {/* Products */}
+          {/* Products Routes */}
+          <Route path="/products" Component={Products} />
+          <Route path="/product-details/:id" Component={ProductDetails} />
 
           {/* Handle Not Found */}
           <Route path="*" Component={NotFound} />

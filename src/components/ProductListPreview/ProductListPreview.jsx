@@ -8,7 +8,7 @@ export const ProductListPreview = ({ products = [] }) => {
   return (
     <>
       {/* Preview Data */}
-      <Row className="g-3 my-4">
+      <Row className="g-3 my-3">
         {products.map((product) => (
           <Col sm={12} md={6} lg={4} key={product.id}>
             <ProductCard product={product} withFooter={true} />

@@ -24,6 +24,13 @@ export const GlobalNavbar = () => {
               </Nav.Link>
             </Nav.Item>
 
+            {/* Products Link */}
+            <Nav.Item>
+              <Nav.Link as={Link} to="/products">
+                Products
+              </Nav.Link>
+            </Nav.Item>
+
             {/* Login Link */}
             <Nav.Item>
               <Nav.Link as={Link} to="/login">
