@@ -16,7 +16,7 @@ export default function App() {
       <Toaster position="bottom-right" />
 
       {/* Main Routes */}
-      <Container>
+      <Container className="my-3 min-vh-100">
         <Routes>
           <Route path="/" Component={Home} />
           <Route path="/login" Component={Login} />
