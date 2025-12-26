@@ -23,7 +23,7 @@ export const ProductCard = ({ product, withFooter = false }) => {
           <AddToCardButton />
 
           {/* Link Navigate - Product Details */}
-          <Button as={Link} to={`product-details/${id}`} variant="dark">
+          <Button as={Link} to={`/product-details/${id}`} variant="dark">
             Show More
           </Button>
         </Card.Footer>

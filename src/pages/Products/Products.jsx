@@ -3,9 +3,13 @@ import { ProductListPreview } from "../../components/ProductListPreview/ProductL
 import { errorHandler } from "../../utils/errorHandler";
 import { API } from "../../api/apiService";
 import { Paginator } from "../../components/Paginator/Paginator";
+import { Loading } from "../../components/Loading/Loading";
 
 // Fetch Products
 export const Products = () => {
+  // Loading State
+  const [loading, setLoading] = useState(true);
+
   // Local Products
   const [products, setProducts] = useState([]);
 
@@ -27,6 +31,9 @@ export const Products = () => {
     function () {
       async function fetchAllProducts() {
         try {
+          // Enable Loading
+          setLoading(true);
+
           // Hit Endpoint
           const response = await API.get(
             `/products?skip=${skip}&limit=${limit}`
@@ -41,6 +48,9 @@ export const Products = () => {
           setNoPages(Math.ceil(total / limit));
         } catch (error) {
           errorHandler(error);
+        } finally {
+          // Disabled Loading
+          setLoading(false);
         }
       }
 
@@ -48,6 +58,8 @@ export const Products = () => {
     },
     [skip]
   );
+
+  if (loading) return <Loading />;
 
   return (
     <div>
