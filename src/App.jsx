@@ -5,6 +5,7 @@ import { Login } from "./pages/Login/Login";
 import { GlobalNavbar } from "./components/GlobalNavbar/GlobalNavbar";
 import { Footer } from "./components/Footer/Footer";
 import { Toaster } from "react-hot-toast";
+import { NotFound } from "./pages/NotFound/NotFound";
 
 export default function App() {
   return (
@@ -20,6 +21,11 @@ export default function App() {
         <Routes>
           <Route path="/" Component={Home} />
           <Route path="/login" Component={Login} />
+
+          {/* Products */}
+
+          {/* Handle Not Found */}
+          <Route path="*" Component={NotFound} />
         </Routes>
       </Container>
 
