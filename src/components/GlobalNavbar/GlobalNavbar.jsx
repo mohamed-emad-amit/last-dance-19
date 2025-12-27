@@ -6,11 +6,13 @@ import { LogoutButton } from "../LogoutButton/LogoutButton";
 import { Avatar } from "../Avatar/Avatar";
 
 export const GlobalNavbar = () => {
+  const { theme } = useSelector((state) => state.app);
+
   // Select isLoggedIn
   const { isLoggedIn } = useSelector((state) => state.user);
 
   return (
-    <Navbar expand="md" bg="light" data-bs-theme="light">
+    <Navbar expand="md" bg={theme} data-bs-theme={theme}>
       <Container>
         {/* Brand With Logo Only */}
         <Navbar.Brand as={Link} to="/">
@@ -34,6 +36,13 @@ export const GlobalNavbar = () => {
             <Nav.Item>
               <Nav.Link as={Link} to="/products">
                 Products
+              </Nav.Link>
+            </Nav.Item>
+
+            {/* Cart Link */}
+            <Nav.Item>
+              <Nav.Link as={Link} to="/cart">
+                Cart
               </Nav.Link>
             </Nav.Item>
           </Nav>

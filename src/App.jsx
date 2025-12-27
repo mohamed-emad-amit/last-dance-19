@@ -15,8 +15,12 @@ import { errorHandler } from "./utils/errorHandler";
 import { API } from "./api/apiService";
 import { setUser } from "./store/slices/userSlice";
 import { Loading } from "./components/Loading/Loading";
+import { Cart } from "./pages/Cart/Cart";
+import { ProductsCategory } from "./pages/ProductsCategory/ProductsCategory";
 
 export default function App() {
+  // Select Theme
+  const { theme } = useSelector((state) => state.app);
   // Loading
   const [loading, setLoading] = useState(false);
 
@@ -66,6 +70,11 @@ export default function App() {
     verifyMe();
   }, []);
 
+  // useEffect(function () {
+  //   // Apply Theme Global Body
+  //   document.body.setAttribute("data-bs-theme", theme);
+  // }, [theme])
+
   if (loading) return <Loading />;
 
   return (
@@ -90,9 +99,15 @@ export default function App() {
             </>
           )}
 
+          {/* Cart Routes */}
+          <Route path="/cart" Component={Cart} />
+
           {/* Products Routes */}
           <Route path="/products" Component={Products} />
           <Route path="/product-details/:id" Component={ProductDetails} />
+
+          {/* Category Routes */}
+          <Route path="/category/:slug" Component={ProductsCategory} />
 
           {/* Handle Not Found */}
           <Route path="*" Component={NotFound} />

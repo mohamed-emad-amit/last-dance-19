@@ -1,6 +1,7 @@
 import { Carousel } from "react-bootstrap";
 import { IMAGES } from "../../constants/images";
 import { RecommendedSection } from "../../components/RecommendedSection/RecommendedSection";
+import { CategoriesSection } from "../../components/CategoriesSection/CategoriesSection";
 
 export const Home = () => {
   return (
@@ -19,6 +20,9 @@ export const Home = () => {
           <img src={IMAGES.HERO_IMAGE_3} alt="HERO_IMAGE_3" />
         </Carousel.Item>
       </Carousel>
+
+      {/* Categories Section */}
+      <CategoriesSection />
 
       {/* Recommended Section BasedOn User History */}
       <RecommendedSection />

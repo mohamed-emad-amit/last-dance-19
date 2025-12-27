@@ -20,7 +20,7 @@ export const ProductCard = ({ product, withFooter = false }) => {
 
       {withFooter && (
         <Card.Footer className="d-flex justify-content-between gap-3 align-items-center">
-          <AddToCardButton />
+          <AddToCardButton product={product} />
 
           {/* Link Navigate - Product Details */}
           <Button as={Link} to={`/product-details/${id}`} variant="dark">
