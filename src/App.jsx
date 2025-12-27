@@ -8,8 +8,12 @@ import { Toaster } from "react-hot-toast";
 import { NotFound } from "./pages/NotFound/NotFound";
 import { Products } from "./pages/Products/Products";
 import { ProductDetails } from "./pages/ProductDetails/ProductDetails";
+import { useSelector } from "react-redux";
 
 export default function App() {
+  // Select isLoggedIn
+  const { isLoggedIn } = useSelector((state) => state.user);
+
   return (
     <div>
       {/* Global Components */}
@@ -22,7 +26,15 @@ export default function App() {
       <Container className="my-3 min-vh-100">
         <Routes>
           <Route path="/" Component={Home} />
-          <Route path="/login" Component={Login} />
+
+          {isLoggedIn ? (
+            <>{/* Profile Routes */}</>
+          ) : (
+            <>
+              {/* Auth Routes */}
+              <Route path="/login" Component={Login} />
+            </>
+          )}
 
           {/* Products Routes */}
           <Route path="/products" Component={Products} />

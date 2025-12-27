@@ -4,6 +4,8 @@ import { useRef, useState } from "react";
 import { API } from "../../api/apiService";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { setUser } from "../../store/slices/userSlice";
+import { useDispatch } from "react-redux";
 
 export const Login = () => {
   // Validate Data Before Send
@@ -15,6 +17,9 @@ export const Login = () => {
 
   // Navigate
   const navigate = useNavigate();
+
+  // Dispatch
+  const dispatch = useDispatch();
 
   // Handler
   async function handleLogin(ev) {
@@ -46,7 +51,8 @@ export const Login = () => {
       // Store [LocalStorage - Redux]
       localStorage.setItem("userData", JSON.stringify(userData));
 
-      // Redux [Not Implemented]
+      // Redux
+      dispatch(setUser(userData));
 
       // Redirect Home
       navigate("/");
