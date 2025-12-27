@@ -9,7 +9,11 @@ export const LogoutButton = () => {
 
   // Handler
   function handleLogout() {
+    // Clear Global Redux
     dispatch(clearUser());
+
+    // Clear LocalStorage
+    localStorage.removeItem("userData");
   }
 
   return (
